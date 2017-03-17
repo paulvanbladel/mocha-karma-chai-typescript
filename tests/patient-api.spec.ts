@@ -1,6 +1,7 @@
 import { assert, expect } from 'chai';
+import  * as mocha from 'mocha'
+import * as  chai from 'chai';
 
-let chai = require('chai');
 let chaihttp= require('chai-http')
 chai.use(chaihttp);
 
@@ -10,7 +11,7 @@ describe('Patients get', function () {
     
     chai.request(url).get('/patients').end((err, res)=>{
       assert.isNull(err);
-      debugger;
+      
       expect(err).to.be.null;
       expect(res).to.have.status(200);
       done();

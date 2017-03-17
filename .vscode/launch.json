@@ -12,10 +12,11 @@
     "cwd": "${workspaceRoot}",
     "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
     "args": [
-        "-r", "ts-node/register",
+        "--compilers", "ts:ts-node/register",
+        "--require", "tests/tshooks.js",
         "-u", "tdd",
         "--timeout", "999999",
-        "--colors",
+        "no--colors",
         "${workspaceRoot}/tests/*.spec.ts"
     ],
     "runtimeArgs": [
@@ -23,7 +24,7 @@
     ],
     "sourceMaps": true,
     "outFiles": [
-        "${workspaceRoot}/.js/*"
+        "${workspaceRoot}/out/**/*.js"
     ],
     "type": "node",
     "request": "launch"

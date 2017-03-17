@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import { Calculator } from '../calculator';
-
+import  * as mocha from 'mocha'
 
 var calculator = new Calculator();
 

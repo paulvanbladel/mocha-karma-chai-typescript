@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tests": "mocha -r ts-node/register ./**/*.spec.ts --no-color"
+    "tests": "mocha --require tests/tshooks.js  --compilers ts:ts-node/register ./**/*.spec.ts --no-color"
   },
   "keywords": [],
   "author": "",
