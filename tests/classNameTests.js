@@ -1,3 +1,7 @@
+var chai = require('chai');
+var assert = chai.assert;
+var className = require('../className.js')
+var addClass = className.addClass;
 describe('addClass', function () {
   it('should add class to element', function () {
     var element = { className: '' };
