@@ -1,0 +1,452 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.1",
+    "title": "Osteo API"
+  },
+  "basePath": "/",
+  "paths": {
+    "/api/Patients/{id}": {
+      "get": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Retrieves patient with given identifier",
+        "operationId": "ApiPatientsByIdGet",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identifier for patient to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PatientModel"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Changes an existing patient in the system or creates a new one",
+        "operationId": "ApiPatientsByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id for the patient to update",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "patient",
+            "in": "body",
+            "description": "Updated patient",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PatientModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Deletes a patient from the system",
+        "operationId": "ApiPatientsByIdDelete",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identifier for patient to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/Therapists/{tid}/Patients": {
+      "get": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Retrieves patients related to a given therapist",
+        "operationId": "ApiTherapistsByTidPatientsGet",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tid",
+            "in": "path",
+            "description": "Identifier for the therapist for which to retrieve patients",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PatientModel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Patients": {
+      "post": {
+        "tags": [
+          "Patients"
+        ],
+        "summary": "Adds a patient to the system",
+        "operationId": "ApiPatientsPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "patient",
+            "in": "body",
+            "description": "Patient to add to the system",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PatientModel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/Therapists": {
+      "get": {
+        "tags": [
+          "Therapists"
+        ],
+        "summary": "Retrieves all therapists in the system",
+        "operationId": "ApiTherapistsGet",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TherapistModel"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Therapists"
+        ],
+        "summary": "Adds a therapist to the system",
+        "operationId": "ApiTherapistsPost",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "therapist",
+            "in": "body",
+            "description": "Therapist to add",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TherapistModel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/api/Therapists/{id}": {
+      "get": {
+        "tags": [
+          "Therapists"
+        ],
+        "summary": "Retrieve therapist with given ID",
+        "operationId": "ApiTherapistsByIdGet",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TherapistModel"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Therapists"
+        ],
+        "summary": "Changes an existing therapist in the system",
+        "operationId": "ApiTherapistsByIdPut",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id for the therapist to change",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "therapist",
+            "in": "body",
+            "description": "Updated therapist",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TherapistModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Therapists"
+        ],
+        "summary": "Deletes therapist with the given identifier",
+        "operationId": "ApiTherapistsByIdDelete",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identifier for the therapist to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "PatientModel": {
+      "description": "PatientModel models the wire representation for a Therapist",
+      "type": "object",
+      "properties": {
+        "patientId": {
+          "type": "string"
+        },
+        "nationality": {
+          "type": "string"
+        },
+        "profession": {
+          "type": "string"
+        },
+        "numberOfChildren": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "additionalInfo": {
+          "type": "string"
+        },
+        "birthDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "generalPractitioner": {
+          "type": "string"
+        },
+        "primaryLanguage": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/AddressModel"
+        },
+        "landlinePhoneNumber": {
+          "type": "string"
+        },
+        "mobilePhoneNumber": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "fax": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        }
+      }
+    },
+    "AddressModel": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "houseNumber": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "TherapistModel": {
+      "description": "TherapistModel models the wire representation for a Therapist",
+      "type": "object",
+      "properties": {
+        "therapistId": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/AddressModel"
+        },
+        "landlinePhoneNumber": {
+          "type": "string"
+        },
+        "mobilePhoneNumber": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "fax": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {}
+}
